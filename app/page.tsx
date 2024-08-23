@@ -3,12 +3,11 @@ import { createServerComponentClient } from "@/node_modules/@supabase/auth-helpe
 import { cookies } from "@/node_modules/next/headers";
 import Link from "@/node_modules/next/link";
 
-const supabase = createServerComponentClient({cookies});
-const getAllLessons = async() => {
+const supabase = createServerComponentClient({ cookies });
+const getAllLessons = async () => {
   const { data: lessons } = await supabase.from("lesson").select("*");
   return lessons;
-
-}
+};
 
 export default async function Home() {
   const lessons = await getAllLessons();

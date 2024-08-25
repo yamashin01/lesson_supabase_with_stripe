@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import AuthServerButton from "./auth/AuthServerButton";
 import { Button } from "./ui/button";
 
 const Header = () => {
@@ -11,9 +12,9 @@ const Header = () => {
       <Link href={"/pricing"} className="ml-4">
         <Button variant="outline">価格</Button>
       </Link>
-      <Link href={"/login"} className="ml-auto">
-        <Button>ログイン</Button>
-      </Link>
+      <div className="ml-auto">
+        <AuthServerButton />
+      </div>
     </div>
   );
 };

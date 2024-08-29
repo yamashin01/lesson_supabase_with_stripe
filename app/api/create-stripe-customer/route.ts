@@ -8,6 +8,12 @@ export async function POST(req: NextRequest) {
 
   const data = await req.json();
   const { id, email } = data;
+  const query = req.nextUrl.searchParams.get("API_ROUTE_SECRET");
+  if (query != process.env.API_ROUTE_SECRET) {
+    return NextResponse.json({
+      message: `APIを叩く権限がありません。`,
+    });
+  }
 
   const stripe = new initiStripe(process.env.STRIPE_SECRET_KEY!);
   const customer = await stripe.customers.create({

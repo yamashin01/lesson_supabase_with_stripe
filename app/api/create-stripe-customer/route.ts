@@ -7,7 +7,8 @@ export async function POST(req: NextRequest) {
   const supabase = createRouteHandlerClient({ cookies });
 
   const data = await req.json();
-  const { id, email } = data;
+  const { id, email } = data.record;
+
   const query = req.nextUrl.searchParams.get("API_ROUTE_SECRET");
   if (query != process.env.API_ROUTE_SECRET) {
     return NextResponse.json({

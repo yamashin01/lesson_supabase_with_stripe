@@ -37,7 +37,7 @@ const LessonDetailPage = async ({ params }: { params: { id: number } }) => {
     await getDetailLesson(params.id, supabase),
     await getPremiumContent(params.id, supabase),
   ]);
-  const videoId = video?.video_url.match(/v=([^&]+)/)[1];
+  const videoId = video?.video_url?.match(/v=([^&]+)/)[1] as string;
 
   return (
     <div className="w-full max-w-3xl mx-auto py-16 px-8">

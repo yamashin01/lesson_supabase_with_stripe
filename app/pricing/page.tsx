@@ -13,6 +13,7 @@ import { SupabaseClient } from "@supabase/supabase-js";
 import Stripe from "stripe";
 import initStripe from "stripe";
 import { cookies } from "@/node_modules/next/headers";
+import SubscriptionButton from "@/components/checkout/SubscriptionButton";
 
 interface Plan {
   id: string;
@@ -77,7 +78,7 @@ const PricingPage = async () => {
           </CardContent>
           <CardFooter>
             <Button>
-              {showSubscribeButton && "サブスクリプション契約する"}
+              {showSubscribeButton && <SubscriptionButton planId={plan.id} />}
               {showManageSubscriptionButton && "サブスクリプション管理する"}
               {showCreateAcountButton && "ログインする"}
             </Button>

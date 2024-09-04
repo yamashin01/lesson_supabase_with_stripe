@@ -14,6 +14,7 @@ import Stripe from "stripe";
 import initStripe from "stripe";
 import { cookies } from "@/node_modules/next/headers";
 import SubscriptionButton from "@/components/checkout/SubscriptionButton";
+import Link from "next/link";
 
 interface Plan {
   id: string;
@@ -79,7 +80,11 @@ const PricingPage = async () => {
           <CardFooter>
             <Button>
               {showSubscribeButton && <SubscriptionButton planId={plan.id} />}
-              {showManageSubscriptionButton && "サブスクリプション管理する"}
+              {showManageSubscriptionButton && (
+                <Button>
+                  <Link href="/dashboard">サブスクリプション管理する</Link>
+                </Button>
+              )}
               {showCreateAcountButton && "ログインする"}
             </Button>
           </CardFooter>

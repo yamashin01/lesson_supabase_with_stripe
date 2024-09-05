@@ -1,15 +1,14 @@
 import SubscriptionManageButton from "@/components/checkout/SubscriptionManageButton";
 import { Database } from "@/lib/database.types";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { SupabaseClient } from "@supabase/supabase-js";
-import { cookies } from "next/headers";
+import { supabaseServer } from "../utils/supabaseServer";
 
 const getProfileInfo = async (supabase: SupabaseClient<Database>) => {
   const { data: profile } = await supabase.from("profile").select("*").single();
   return profile;
 };
 const Dashboard = async () => {
-  const supabase = createServerComponentClient<Database>({ cookies });
+  const supabase = supabaseServer();
   const profile = await getProfileInfo(supabase);
   return (
     <div className="w-full max-w-3xl mx-auto my-16 px-8">

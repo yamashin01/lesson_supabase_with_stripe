@@ -4,11 +4,13 @@ import Link from "next/link";
 import React from "react";
 import AuthServerButton from "./auth/AuthServerButton";
 import { Button } from "./ui/button";
-import { cookies } from "@/node_modules/next/headers";
+import { cookies } from "next/headers";
 
 const Header = async () => {
   const supabase = createServerComponentClient<Database>({ cookies });
   const { data: user } = await supabase.auth.getSession();
+
+  const authServerButton = await AuthServerButton();
 
   return (
     <div className="flex border-b py-4 px-6 border-gray-200">
@@ -23,9 +25,7 @@ const Header = async () => {
       <Link href={"/pricing"} className="ml-4">
         <Button variant="outline">価格</Button>
       </Link>
-      <div className="ml-auto">
-        <AuthServerButton />
-      </div>
+      <div className="ml-auto">{authServerButton}</div>
     </div>
   );
 };

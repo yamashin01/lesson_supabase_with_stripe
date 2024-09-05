@@ -24,7 +24,7 @@ export async function GET(
   const priceId = params.priceId;
 
   const session = await stripe.checkout.sessions.create({
-    customer: stripeCustomerInfo?.stripe_customer,
+    customer: stripeCustomerInfo?.stripe_customer!,
     payment_method_types: ["card"],
     line_items: [
       {

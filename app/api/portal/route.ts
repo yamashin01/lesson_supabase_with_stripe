@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
   const stripe = new initStripe(process.env.STRIPE_SECRET_KEY!);
 
   const session = await stripe.billingPortal.sessions.create({
-    customer: stripeCustomerInfo?.stripe_customer,
+    customer: stripeCustomerInfo?.stripe_customer!,
     return_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard`,
   });
 

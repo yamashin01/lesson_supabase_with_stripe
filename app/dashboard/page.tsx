@@ -1,3 +1,4 @@
+import SubscriptionManageButton from "@/components/checkout/SubscriptionManageButton";
 import { Database } from "@/lib/database.types";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { SupabaseClient } from "@supabase/supabase-js";
@@ -17,7 +18,7 @@ const Dashboard = async () => {
         <div className="my-4">
           {profile?.is_subscribed ? `契約中：${profile?.interval}` : "未契約"}
         </div>
-        <div>サブスクリプション管理</div>
+        <SubscriptionManageButton />
       </div>
     </div>
   );

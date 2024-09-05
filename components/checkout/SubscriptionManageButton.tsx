@@ -8,7 +8,7 @@ const SubscriptionManageButton = () => {
   const router = useRouter();
 
   const handleLoadPortal = async () => {
-    const res = await fetch(`http://localhost:3000/api/portal`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/portal`);
     const data = await res.json();
 
     router.push(data.url);

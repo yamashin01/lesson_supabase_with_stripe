@@ -37,13 +37,18 @@ const LessonDetailPage = async ({ params }: { params: { id: number } }) => {
     await getDetailLesson(params.id, supabase),
     await getPremiumContent(params.id, supabase),
   ]);
-  const videoId = video?.video_url?.match(/v=([^&]+)/)[1] as string;
 
+  const videoMatch = video?.video_url?.match(/v=([^&]+)/);
+  const videoId = videoMatch ? videoMatch[1] : null;
   return (
     <div className="w-full max-w-3xl mx-auto py-16 px-8">
       <h1 className="text-3xl mb-6">{lesson?.title}</h1>
       <p className="mb-8">{lesson?.description}</p>
-      <YouTubeEmbed videoid={videoId} />
+      {videoId ? (
+        <YouTubeEmbed videoid={videoId} />
+      ) : (
+        "未ログインまたは未契約のため、Youtubeを表示できません。"
+      )}
     </div>
   );
 };
